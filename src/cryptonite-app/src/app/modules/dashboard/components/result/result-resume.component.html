@@ -1,0 +1,20 @@
+<div class="component-container">
+	<div [matTooltip]="now | date" class="title" matTooltipPosition="above">Today</div>
+	<div class="result">
+		<div [ngStyle]="{'color': data.totalOutcome >= 0 ?'lawngreen' : 'var(--color-accent)'}" class="total-outcome">
+			<app-animated-digit [duration]="1000" [endValue]="data.totalOutcome" [positiveOnly]="true"
+			                    [suffix]="data.currency"></app-animated-digit>
+		</div>
+		<div class="items">
+			<div *ngFor="let item of data.items" class="item">
+				<div class="symbol">{{item.symbol}}</div>
+				<div [ngStyle]="{'color': item.priceChangePercent >= 0 ?'lawngreen' : 'var(--color-accent)'}" class="percentage">
+					{{(item.priceChangePercent >= 0 ? item.priceChangePercent : item.priceChangePercent * -1) | number: '1.2-2'}} %
+				</div>
+				<div [ngStyle]="{'color': item.outcome >= 0 ?'lawngreen' : 'var(--color-accent)'}" class="outcome">
+					{{(item.outcome >= 0 ? item.outcome : item.outcome * -1) | number: '1.2-2'}} {{data.currency}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,242 @@
+<ion-content>
+
+	<div class="theme-page">
+		<h2>Buttons</h2>
+		<section>
+			<div class="example-label">Basic</div>
+			<div class="example-button-row">
+				<button mat-button>Basic</button>
+				<button color="primary" mat-button>Primary</button>
+				<button color="accent" mat-button>Accent</button>
+				<button color="warn" mat-button>Warn</button>
+				<button disabled mat-button>Disabled</button>
+				<a href="" mat-button>Link</a>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section>
+			<div class="example-label">Raised</div>
+			<div class="example-button-row">
+				<button mat-raised-button>Basic</button>
+				<button color="primary" mat-raised-button>Primary</button>
+				<button color="accent" mat-raised-button>Accent</button>
+				<button color="warn" mat-raised-button>Warn</button>
+				<button disabled mat-raised-button>Disabled</button>
+				<a href="" mat-raised-button>Link</a>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section>
+			<div class="example-label">Stroked</div>
+			<div class="example-button-row">
+				<button mat-stroked-button>Basic</button>
+				<button color="primary" mat-stroked-button>Primary</button>
+				<button color="accent" mat-stroked-button>Accent</button>
+				<button color="warn" mat-stroked-button>Warn</button>
+				<button disabled mat-stroked-button>Disabled</button>
+				<a href="" mat-stroked-button>Link</a>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section>
+			<div class="example-label">Flat</div>
+			<div class="example-button-row">
+				<button mat-flat-button>Basic</button>
+				<button color="primary" mat-flat-button>Primary</button>
+				<button color="accent" mat-flat-button>Accent</button>
+				<button color="warn" mat-flat-button>Warn</button>
+				<button disabled mat-flat-button>Disabled</button>
+				<a href="" mat-flat-button>Link</a>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section>
+			<div class="example-label">Icon</div>
+			<div class="example-button-row">
+				<div class="example-flex-container">
+					<button aria-label="Example icon button with a vertical three dot
+          icon" mat-icon-button>
+						<mat-icon>more_vert</mat-icon>
+					</button>
+					<button aria-label="Example icon button with a
+          home
+          icon" color="primary" mat-icon-button>
+						<mat-icon>home</mat-icon>
+					</button>
+					<button aria-label="Example icon button with a menu
+          icon" color="accent" mat-icon-button>
+						<mat-icon>menu</mat-icon>
+					</button>
+					<button aria-label="Example icon button with a heart
+          icon" color="warn" mat-icon-button>
+						<mat-icon>favorite</mat-icon>
+					</button>
+					<button aria-label="Example icon button with a open in
+          new
+          tab icon" disabled mat-icon-button>
+						<mat-icon>open_in_new</mat-icon>
+					</button>
+				</div>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section>
+			<div class="example-label">FAB</div>
+			<div class="example-button-row">
+				<div class="example-flex-container">
+					<div class="example-button-container">
+						<button aria-label="Example icon button with a delete
+            icon" color="primary" mat-fab>
+							<mat-icon>delete</mat-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button aria-label="Example icon button with a bookmark
+            icon" color="accent" mat-fab>
+							<mat-icon>bookmark</mat-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button aria-label="Example icon button with a home icon" color="warn" mat-fab>
+							<mat-icon>home</mat-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button aria-label="Example icon button with a heart icon" disabled mat-fab>
+							<mat-icon>favorite</mat-icon>
+						</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section>
+			<div class="example-label">Mini FAB</div>
+			<div class="example-button-row">
+				<div class="example-flex-container">
+					<div class="example-button-container">
+						<button aria-label="Example icon button with a menu
+            icon" color="primary" mat-mini-fab>
+							<mat-icon>menu</mat-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button aria-label="Example icon button with a plus
+            one icon" color="accent" mat-mini-fab>
+							<mat-icon>plus_one</mat-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button aria-label="Example icon button with a filter
+            list icon" color="warn" mat-mini-fab>
+							<mat-icon>filter_list</mat-icon>
+						</button>
+					</div>
+					<div class="example-button-container">
+						<button aria-label="Example icon button with a home icon" disabled mat-mini-fab>
+							<mat-icon>home</mat-icon>
+						</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<h2>Toggles</h2>
+		<p>
+			Default appearance:
+			<mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+				<mat-button-toggle value="bold">Bold</mat-button-toggle>
+				<mat-button-toggle value="italic">Italic</mat-button-toggle>
+				<mat-button-toggle value="underline">Underline</mat-button-toggle>
+			</mat-button-toggle-group>
+		</p>
+		<mat-divider></mat-divider>
+		<h2>Checkboxes</h2>
+
+		<section class="example-section">
+			<mat-checkbox [(ngModel)]="checked" class="example-margin">Checked</mat-checkbox>
+			<mat-checkbox [(ngModel)]="indeterminate" [indeterminate]="true"
+			              class="example-margin">Indeterminate
+			</mat-checkbox>
+		</section>
+
+		<section class="example-section">
+			<label class="example-margin">Radio:</label>
+			<mat-radio-group [(ngModel)]="labelPosition">
+				<mat-radio-button class="example-margin" value="after">After</mat-radio-button>
+				<mat-radio-button class="example-margin" value="before">Before</mat-radio-button>
+			</mat-radio-group>
+		</section>
+
+		<section class="example-section">
+			<mat-checkbox [(ngModel)]="disabled" [disabled]="true" class="example-margin">Disabled</mat-checkbox>
+		</section>
+		<mat-divider></mat-divider>
+		<h2>Inputs</h2>
+		<mat-form-field class="example-form-field">
+			<mat-label>Clearable input</mat-label>
+			<input [(ngModel)]="value" matInput type="text">
+			<button (click)="value=''" *ngIf="value" aria-label="Clear" mat-button mat-icon-button
+			        matSuffix>
+				<mat-icon>close</mat-icon>
+			</button>
+		</mat-form-field>
+		<mat-form-field appearance="outline">
+			<mat-label>Input</mat-label>
+			<input matInput type="text">
+		</mat-form-field>
+		<mat-form-field appearance="fill">
+			<mat-label>Input</mat-label>
+			<input matInput name="text" type="text">
+		</mat-form-field>
+		<mat-form-field appearance="fill">
+			<mat-label>Select</mat-label>
+			<mat-select>
+				<mat-option value="one">First option</mat-option>
+				<mat-option value="two">Second option</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field appearance="fill">
+			<mat-label>Textarea</mat-label>
+			<textarea matInput></textarea>
+		</mat-form-field>
+		<mat-divider></mat-divider>
+		<h2>Badges</h2>
+		<p>
+			<span matBadge="4" matBadgeOverlap="false">Text with a badge</span>
+		</p>
+
+		<p>
+			<span matBadge="1" matBadgeSize="large">Text with large badge</span>
+		</p>
+
+		<p>
+			Button with a badge on the left
+			<button color="primary" mat-raised-button
+			        matBadge="8" matBadgeColor="accent" matBadgePosition="before">
+				Action
+			</button>
+		</p>
+
+		<p>
+			Button toggles badge visibility
+			<button (click)="toggleBadgeVisibility()" [matBadgeHidden]="hidden" mat-raised-button
+			        matBadge="7">
+				Hide
+			</button>
+		</p>
+
+		<p>
+			Icon with a badge
+			<mat-icon matBadge="15" matBadgeColor="warn">home</mat-icon>
+			<!-- Include text description of the icon's meaning for screen-readers -->
+			<span class="cdk-visually-hidden">
+      Example with a home icon with overlaid badge showing the number 15
+    </span>
+		</p>
+		<mat-divider></mat-divider>
+		<h2>Others</h2>
+		<mat-slider></mat-slider>
+		<br><br>
+	</div>
+</ion-content>

@@ -1,0 +1,99 @@
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  buildConfiguration: "Debug"
+
+stages:
+  - stage: Build
+    displayName: "Build and test"
+    jobs:
+      - job: Build
+        displayName: "Build and test"
+        steps:
+          - checkout: self
+            displayName: "Checkout Cryptonite/master"
+          - script: dir $(Build.SourcesDirectory)
+          - task: DotNetCoreCLI@2
+            displayName: "Restore"
+            inputs:
+              command: restore
+              projects: "**/*.csproj"
+
+          - task: DotNetCoreCLI@2
+            displayName: "Build"
+            inputs:
+              command: build
+              projects: "**/*.csproj"
+              arguments: "--configuration $(buildConfiguration)"
+
+          - task: DotNetCoreCLI@2
+            displayName: "Test"
+            inputs:
+              command: "test"
+              arguments: "--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/"
+              publishTestResults: true
+              projects: "**/*.Tests.csproj"
+
+          - task: PublishCodeCoverageResults@1
+            displayName: "Publish code coverage"
+            inputs:
+              codeCoverageTool: "Cobertura"
+              summaryFileLocation: "$(Build.SourcesDirectory)/**/coverage.cobertura.xml"
+
+          - task: DotNetCoreCLI@2
+            displayName: "Prepare artifacts"
+            inputs:
+              command: publish
+              publishWebProjects: True
+              arguments: "--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)"
+              zipAfterPublish: false
+
+          - task: PublishBuildArtifacts@1
+            displayName: "Publish artifacts"
+            inputs:
+              pathtoPublish: "$(Build.ArtifactStagingDirectory)"
+              artifactName: "drop"
+
+  - stage: Deploy
+    displayName: "Deploy to Linux VM"
+    jobs:
+      - job: Prepare
+        displayName: "Prepare VM for deployment"
+        steps:
+          - task: InstallSSHKey@0
+            displayName: 'Install an SSH key'
+            inputs:
+              sshKeySecureFile: 'general-vm-ssh.pem'
+              addEntryToConfig: true
+              configHostAlias: 'GeneralVM'
+              configHostname: 'general-vm-stefanaru.westeurope.cloudapp.azure.com'
+              configUser: azure
+              configPort: 22
+              knownHostsEntry: CJ0F3jPeePYY4CyZwxm/56f1FKU=|jbIjai+FN/T4s04DEdas8a8snNk= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBADWXVgaYPbftNBr/s0gr6+kz9jFFL91bb35JEsocu5JDeGr1qacoTb7fl8Pue4YJkrxVzkLD9YKFHJri7kQWgM=
+          - task: DownloadPipelineArtifact@2
+            displayName: "Download artifacts"
+            inputs:
+              artifactName: drop
+              path: "$(Build.ArtifactStagingDirectory)"
+          - task: FileTransform@1
+            inputs:
+              folderPath: '$(Build.ArtifactStagingDirectory)'
+              fileType: 'json'
+              targetFiles: '**/appsettings.json'
+          - task: SSH@0
+            displayName: 'Stop service'
+            inputs:
+              sshEndpoint: 'GeneralVM'
+              commands: 'sudo systemctl stop cryptoniteApi.service;sudo rm -rf /var/www/Cryptonite.API'
+          - task: CopyFilesOverSSH@0
+            displayName: 'Securely copy artifacts'
+            inputs:
+              sshEndpoint: 'GeneralVM'
+              sourceFolder: '$(Build.ArtifactStagingDirectory)'
+              targetFolder: /var/www
+          - task: SSH@0
+            displayName: 'Start service'
+            inputs:
+              sshEndpoint: 'GeneralVM'
+              commands: 'sudo systemctl start cryptoniteApi.service'

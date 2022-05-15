@@ -1,0 +1,111 @@
+<ion-content>
+	<div class="page-container">
+		<div class="title">New BUY entry</div>
+		<form [formGroup]="formGroup">
+			<div class="row">
+				<app-material-number-input [formGroup]="formGroup"
+				                           [min]="0"
+				                           [unit]="paymentCurrencyInput.value.toUpperCase()"
+				                           controlName="paidAmount"
+				                           label="Paid amount">
+				</app-material-number-input>
+				<mat-form-field appearance="fill">
+					<mat-label>Payment currency</mat-label>
+					<input #paymentCurrencyInput
+					       (blur)="onMoneyCurrencyBlur(paymentCurrencyInput, 'bankAccountCurrency')"
+					       [matAutocomplete]="autoPaymentCurrencies"
+					       aria-label="Currencies"
+					       data-lpignore="true"
+					       formControlName="paymentCurrency"
+					       matInput
+					       placeholder="Pick one"
+					       type="text">
+					<button (click)="formGroup.controls.paymentCurrency.setValue('')" *ngIf="paymentCurrencyInput.value" aria-label="Clear" mat-icon-button
+					        matSuffix>
+						<mat-icon>close</mat-icon>
+					</button>
+					<mat-autocomplete #autoPaymentCurrencies="matAutocomplete" (optionSelected)="paymentCurrencyInput.blur()">
+						<mat-option *ngFor="let option of filteredPaymentCurrencies | async" [value]="option">
+							{{option}}
+						</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+			</div>
+			<div class="row">
+				<app-material-number-input [formGroup]="formGroup"
+				                           [min]="0"
+				                           [unit]="boughtCryptocurrencyInput.value.toUpperCase()"
+				                           controlName="boughtAmount"
+				                           label="Bought amount">
+				</app-material-number-input>
+				<mat-form-field appearance="fill">
+					<mat-label>Bought currency</mat-label>
+					<input #boughtCryptocurrencyInput
+					       (blur)="onAutocompleteBlur(boughtCryptocurrencyInput, cryptoSymbols)"
+					       [matAutocomplete]="autoCryptoCurrencies"
+					       aria-label="Currencies"
+					       data-lpignore="true"
+					       formControlName="boughtCryptocurrency"
+					       matInput
+					       placeholder="Pick one"
+					       type="text">
+					<button (click)="formGroup.controls.boughtCryptocurrency.setValue('')" *ngIf="boughtCryptocurrencyInput.value" aria-label="Clear"
+					        mat-icon-button
+					        matSuffix>
+						<mat-icon>close</mat-icon>
+					</button>
+					<mat-autocomplete #autoCryptoCurrencies="matAutocomplete" (optionSelected)="boughtCryptocurrencyInput.blur()">
+						<mat-option *ngFor="let option of filteredCryptoSymbols | async" [value]="option">
+							{{option}}
+						</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+			</div>
+			<div class="row">
+				<app-material-number-input [formGroup]="formGroup"
+				                           [max]="100"
+				                           [min]="0"
+				                           controlName="bankConversionMargin"
+				                           label="Bank conversion margin"
+				                           unit="%">
+				</app-material-number-input>
+				<mat-form-field appearance="fill">
+					<mat-label>Bank account currency</mat-label>
+					<input #bankAccountCurrencyInput
+					       (blur)="onMoneyCurrencyBlur(bankAccountCurrencyInput, 'paymentCurrency')"
+					       (keyup)="onBankAccountCurrencyKeyDown(bankAccountCurrencyInput)"
+					       [matAutocomplete]="autoBankAccountCurrencies"
+					       aria-label="Currencies"
+					       data-lpignore="true"
+					       formControlName="bankAccountCurrency"
+					       matInput
+					       placeholder="Pick one"
+					       type="text">
+					<button (click)="formGroup.controls.bankAccountCurrency.setValue('')" *ngIf="bankAccountCurrencyInput.value" aria-label="Clear"
+					        mat-icon-button
+					        matSuffix>
+						<mat-icon>close</mat-icon>
+					</button>
+					<mat-autocomplete #autoBankAccountCurrencies="matAutocomplete" (optionSelected)="bankAccountCurrencyInput.blur()"
+					                  [autoActiveFirstOption]="false">
+						<mat-option *ngFor="let option of filteredBankAccountCurrencies | async" [value]="option">
+							{{option}}
+						</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+			</div>
+			<div class="row">
+				<mat-form-field appearance="fill">
+					<mat-label>Bought at</mat-label>
+					<input [matDatepicker]="picker" [max]="dateNow" formControlName="boughtAt" matInput>
+					<mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+					<mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+			</div>
+		</form>
+		<div class="buttons">
+			<button (click)="onSubmit()" [disabled]="formGroup.invalid" color="accent" mat-raised-button>Submit</button>
+			<button mat-stroked-button>Cancel</button>
+		</div>
+	</div>
+</ion-content>

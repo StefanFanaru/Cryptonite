@@ -1,0 +1,73 @@
+<ion-content>
+	<div class="auth-diagnostics">
+		<p>
+			<button (click)="login()" *ngIf="!(isAuthenticated | async)" color="primary" mat-flat-button>Login</button>
+			<button (click)="logout()" *ngIf="(isAuthenticated | async)" color="accent" mat-flat-button>Logout</button>
+		</p>
+		<p>
+			<button (click)="refresh()" mat-stroked-button>
+				Force silent refresh
+			</button>
+			<button (click)="reload()" mat-stroked-button>
+				Reload page
+			</button>
+			<button (click)="clearStorage()" mat-stroked-button>
+				Clear storage
+			</button>
+			<button (click)="loadingBar.useRef().start()" mat-stroked-button>
+				Show loading
+			</button>
+			<button (click)="loadingBar.useRef().stop()" mat-stroked-button>
+				Hide loading
+			</button>
+		</p>
+		<table>
+			<tr>
+				<th>IsAuthenticated</th>
+				<td>
+					<code id="isAuthenticated">{{ isAuthenticated | async }}</code>
+				</td>
+			</tr>
+			<tr>
+				<th>HasValidToken</th>
+				<td>
+					<code id="hasValidToken">{{ hasValidToken }}</code>
+				</td>
+			</tr>
+			<tr>
+				<th>CanActivateProtectedRoutes</th>
+				<td>
+					<code id="canActivateProtectedRoutes">{{
+            canActivateProtectedRoutes | async
+						}}</code>
+				</td>
+			</tr>
+			<tr>
+				<th>TokenClaims</th>
+				<td class="pre">
+					<code id="identityClaims">{{ identityClaims | json }}</code>
+				</td>
+			</tr>
+			<tr>
+				<th>AccessToken <br>
+					<button *ngIf="accessToken" [cdkCopyToClipboard]="accessToken" id="copy-button" mat-stroked-button>Copy</button>
+				</th>
+				<td>
+					<code class="break-all">{{ accessToken }}</code>
+				</td>
+			</tr>
+			<!--    <tr>-->
+			<!--      <th>RefreshToken</th>-->
+			<!--      <td>-->
+			<!--        <code class="break-all">{{ refreshToken }}</code>-->
+			<!--      </td>-->
+			<!--    </tr>-->
+			<!--      <tr>-->
+			<!--      <th>IdToken</th>-->
+			<!--      <td>-->
+			<!--        <code class="break-all">{{ idToken }}</code>-->
+			<!--      </td>-->
+			<!--    </tr>-->
+		</table>
+	</div>
+</ion-content>

@@ -1,0 +1,69 @@
+@import 'src/styles/mixins';
+
+.page-container {
+	padding: 4rem;
+
+	@include phone {
+		padding: 2rem 4rem 0;
+	}
+}
+
+.title {
+	font-size: 3vh;
+	margin-bottom: 4rem;
+	text-align: center;
+
+	@include phone {
+		margin-bottom: 2rem;
+	}
+}
+
+form {
+	.row {
+		width: 100%;
+		display: flex;
+		gap: 4rem;
+		justify-content: center;
+		margin-bottom: 2rem;
+
+		app-material-number-input {
+			width: 30%;
+		}
+
+		mat-form-field {
+			width: 30%;
+		}
+
+		@include tablet {
+			app-material-number-input {
+				width: 45%;
+			}
+
+			mat-form-field {
+				width: 45%;
+			}
+		}
+
+		@include phone {
+			flex-direction: column;
+			gap: unset;
+
+			app-material-number-input {
+				margin-right: 0;
+				width: 100%;
+			}
+
+			mat-form-field {
+				width: 100%;
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	margin-bottom: 2rem;
+}

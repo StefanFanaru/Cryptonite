@@ -1,0 +1,30 @@
+<ion-content>
+	<div class="page-container">
+		<div class="top-buttons">
+			<button (click)="onFullScreenClick()" *ngIf="headerService.isShown" mat-button matTooltip="Hide top menu">
+				<i class="fas fa-eye-slash"></i>
+			</button>
+			<button (click)="onFullScreenClick()" *ngIf="!headerService.isShown" mat-button matTooltip="Show top menu">
+				<i class="fas fa-eye"></i>
+			</button>
+			<button (click)="onMiniClick()" *ngIf="!isCompressed" mat-button matTooltip="Compress">
+				<i class="fas fa-compress"></i>
+			</button>
+			<button (click)="onMiniClick()" *ngIf="isCompressed" mat-button matTooltip="Expand">
+				<i class="fas fa-expand"></i>
+			</button>
+		</div>
+		<div *ngIf="allTimeResult && distribution?.totalValue > 0" class="all-time">
+			<div [ngStyle]="{'color': allTimeResult.result >= 0 ?'lawngreen' : 'var(--color-accent)'}" class="profit-value">
+				<app-animated-digit [duration]="1000" [endValue]="allTimeResult.result" [positiveOnly]="true"
+				                    [suffix]="allTimeResult.currency"></app-animated-digit>
+			</div>
+			<span class="text">All time</span>
+		</div>
+		<div *ngIf="distribution?.totalValue > 0" class="details">
+			<app-result-resume *ngIf="todayResult" [data]="todayResult"></app-result-resume>
+			<app-distribution-chart *ngIf="distribution" [distribution]="distribution"></app-distribution-chart>
+		</div>
+		<app-no-items *ngIf="distribution?.totalValue == 0" items="transactions"></app-no-items>
+	</div>
+</ion-content>

@@ -1,0 +1,49 @@
+.page-container {
+	position: relative;
+
+	.top-buttons {
+		position: absolute;
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+
+		svg {
+			color: grey;
+		}
+
+		.mat-button {
+			padding: 0;
+			min-width: 36px;
+		}
+	}
+
+	.all-time {
+		font-size: 2.2rem;
+		margin: 2.5rem 0;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		width: 100%;
+		align-items: center;
+
+		.text {
+			font-size: 1rem;
+			color: grey;
+			letter-spacing: 0.2rem;
+			text-transform: uppercase;
+		}
+	}
+
+	.details {
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		gap: 9rem;
+
+		app-result-resume {
+			width: 37%;
+			height: 100%;
+		}
+	}
+}

@@ -1,0 +1,13 @@
+<div class="component-container">
+	<canvas #chartCanvas
+	        [chartType]="doughnutChartType"
+	        [colors]="pieChartColors"
+	        [data]="data"
+	        [labels]="symbols"
+	        [legend]="false" [options]="options" [plugins]="plugins" baseChart>
+	</canvas>
+	<div class="totalValue">
+		<app-animated-digit [duration]="1000" [endValue]="distribution.totalValue"></app-animated-digit>
+		<div>{{distribution.currency}}</div>
+	</div>
+</div>

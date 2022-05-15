@@ -1,0 +1,293 @@
+:host-context(.dark-theme) {
+	.form-pop-up {
+		box-shadow: 0 0 40px black;
+		background-color: var(--color-primary-700);
+	}
+
+	.mat-table {
+		th {
+			background: var(--color-primary-850);
+			border-top: 1px solid rgba(0, 0, 0, 0.12);
+		}
+
+		background: var(--color-primary-800);
+	}
+
+	.table-row {
+		&:hover {
+			background: var(--color-primary-850);
+			cursor: pointer;
+		}
+
+		&.error {
+			background: rgb(251 58 58 / 5%);
+		}
+
+		&.selected {
+			background: var(--color-primary-850);
+		}
+
+		&.expired {
+			background-color: #fff5f5;
+		}
+	}
+
+	.mat-paginator {
+		background: var(--color-primary-850);
+		border-top: 1px solid #1f1f1f;
+	}
+}
+
+:host-context(.light-theme) {
+	.form-pop-up {
+		box-shadow: 0 0 40px #999999;
+		background-color: white;
+	}
+
+	.mat-table {
+		th {
+			background: var(--color-primary-150);
+			border-top: 1px solid rgba(0, 0, 0, 0.12);
+		}
+
+		background: var(--color-primary-50);
+	}
+
+	.table-row {
+		&.notReadOnly:hover {
+			background: var(--color-primary-150);
+			cursor: pointer;
+		}
+
+		&.selected {
+			background: var(--color-primary-150);
+		}
+
+		&.expired {
+			background-color: #fff5f5;
+		}
+	}
+
+	.mat-paginator {
+		background: var(--color-primary-150);
+	}
+}
+
+.page-container {
+	padding: 0;
+	flex-direction: column;
+}
+
+.no-pointer-events {
+	pointer-events: none
+}
+
+table {
+	width: 100%;
+}
+
+.table-wrapper {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+
+	.identity-table {
+		width: 100%;
+	}
+
+	::ng-deep.mat-header-cell {
+		z-index: 2 !important;
+	}
+}
+
+.table-row {
+	.mat-checkbox {
+		margin-right: 1rem;
+	}
+}
+
+.mat-paginator-sticky {
+	bottom: 0;
+	position: sticky;
+	z-index: 2;
+}
+
+.mat-column-selected {
+	width: 4% !important;
+}
+
+.form-pop-up {
+	width: 28vw;
+	height: 94vh;
+	max-height: 96vw;
+	overflow: auto;
+	padding-bottom: 30px;
+	position: absolute;
+	z-index: 101;
+	left: 71%;
+	border-radius: 8px;
+	top: 2%;
+	animation-name: fade-in;
+	animation-duration: 0.2s;
+
+	::ng-deep .close-button {
+		position: absolute;
+		left: 93%;
+		top: 1%;
+		min-width: unset !important;
+		line-height: unset !important;
+		padding: 0;
+		color: grey;
+
+		span {
+			font-size: 25px;
+		}
+	}
+}
+
+button {
+	&:enabled {
+		span {
+			color: var(--app-blue)
+		}
+
+		.identity-control-red {
+			color: var(--app-red)
+		}
+	}
+
+	&:disabled {
+		.identity-control-red {
+			color: unset;
+		}
+	}
+}
+
+::ng-deep .form-title {
+	font-size: 25px;
+	padding: 29px;
+	font-weight: 500;
+	text-align: center;
+
+	div {
+		text-overflow: ellipsis;
+		max-width: 100%;
+		height: 25px;
+		white-space: nowrap;
+		overflow: hidden;
+		display: block;
+	}
+}
+
+.mat-radio-group {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	padding-bottom: 1.34375em;
+}
+
+.top-wrapper {
+	display: flex;
+	align-items: center;
+	margin: 12px 10px 12px 10px;
+
+	.top-container {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 40px;
+		justify-content: space-between;
+
+		.title {
+			text-align: center;
+			font-size: 1.5rem;
+		}
+
+		.mat-checkbox {
+			margin-left: 1rem;
+			margin-right: 0.5rem;
+		}
+
+		> div {
+			width: 26%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		> div:first-of-type {
+			width: 37%;
+			justify-content: flex-start;
+		}
+
+		> div:last-of-type {
+			width: 37%;
+			justify-content: flex-end;
+		}
+	}
+
+	::ng-deep .mat-form-field-infix {
+		padding: 0;
+		border-top: 0;
+	}
+}
+
+mat-checkbox {
+	font-size: 14px;
+
+	::ng-deep .mat-checkbox-layout {
+		margin-bottom: 0.05rem;
+	}
+}
+
+.filters-select {
+	font-size: 14px;
+	margin: 0 12px;
+
+	::ng-deep .mat-form-field-flex {
+		padding: 9px 9px 9px 12px;
+	}
+
+	::ng-deep .mat-form-field-wrapper {
+		padding-bottom: 0;
+	}
+
+	::ng-deep .mat-form-field-underline {
+		display: none;
+	}
+
+	::ng-deep .mat-select-arrow-wrapper {
+		transform: none;
+	}
+
+	::ng-deep .mat-form-field-infix {
+		width: 150px;
+	}
+
+	::ng-deep .mat-form-field-label-wrapper {
+		//display: none !important;
+
+		.mat-form-field-label {
+			margin-top: -2px;
+		}
+
+	}
+}
+
+.mat-select-no-label {
+	::ng-deep .mat-form-field-label-wrapper {
+		display: none;
+	}
+}
+
+.checkboxes {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 20px 0;
+	align-self: flex-start;
+}
+
+::ng-deep tbody tr {
+	cursor: pointer;
+}

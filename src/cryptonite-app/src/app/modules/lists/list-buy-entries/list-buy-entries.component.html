@@ -1,0 +1,73 @@
+<ion-content>
+	<div class="page-container">
+		<div class="top-wrapper">
+			<div class="top-container">
+				<div class="inline left">
+					<div *ngIf="selectedRows.length > 0" class="inline">
+						<button (click)="delete(itemSelected.paymentCurrency + ' -> ' + itemSelected.boughtCryptocurrency)" mat-button>
+							<span class="material-icons red">delete_forever</span>
+							Delete
+						</button>
+					</div>
+				</div>
+				<div class="title mid">{{pageTitle}}</div>
+				<div class="right inline self-end my-auto right-controls">
+					<button (click)="changeAllSelectionStates(false)" *ngIf="selectedRows.length > 0 && selectMultiple" mat-button><span
+									class="material-icons">highlight_off</span>
+						Deselect
+						all
+					</button>
+					<button (click)="changeAllSelectionStates(true)" *ngIf="selectMultiple" mat-button><span
+									class="material-icons">done_all</span>
+						Select all
+					</button>
+					<mat-checkbox (change)="selectMultipleToggle()" [checked]="selectMultiple" class="mx-3">Multiple</mat-checkbox>
+				</div>
+			</div>
+		</div>
+
+		<div class="table-wrapper">
+			<table (matSortChange)="sortData($event)" [dataSource]="rows" class="custom-table" mat-table matSort>
+				<tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+				<tr (click)="selectRow(row)"
+				    *matRowDef="let row; columns: displayedColumns;"
+				    [ngClass]="{'selected' : row.selected}"
+				    class="table-row"
+				    mat-row></tr>
+				<ng-container matColumnDef="selected">
+					<th *matHeaderCellDef mat-header-cell></th>
+					<td *matCellDef="let element" mat-cell>
+						<mat-checkbox [checked]="element.selected" [disabled]="element['isReadOnly']" class="no-pointer-events"></mat-checkbox>
+					</td>
+				</ng-container>
+				<ng-container matColumnDef="paidAmount">
+					<th *matHeaderCellDef mat-header-cell mat-sort-header="paidAmount">Paid Amount</th>
+					<td *matCellDef="let element" mat-cell>{{element.paidAmount | number}}</td>
+				</ng-container>
+				<ng-container matColumnDef="paymentCurrency">
+					<th *matHeaderCellDef mat-header-cell mat-sort-header="paymentCurrency">Payment currency</th>
+					<td *matCellDef="let element" mat-cell>{{element.paymentCurrency}}</td>
+				</ng-container>
+				<ng-container matColumnDef="boughtAmount">
+					<th *matHeaderCellDef mat-header-cell mat-sort-header="boughtAmount">Bought Amount</th>
+					<td *matCellDef="let element" mat-cell>{{element.boughtAmount | number}}</td>
+				</ng-container>
+				<ng-container matColumnDef="boughtCryptocurrency">
+					<th *matHeaderCellDef mat-header-cell mat-sort-header="boughtCryptocurrency">Bought Cryptocurrency</th>
+					<td *matCellDef="let element" mat-cell>{{element.boughtCryptocurrency}}</td>
+				</ng-container>
+				<ng-container matColumnDef="boughtAt">
+					<th *matHeaderCellDef mat-header-cell mat-sort-header="boughtAt">Bought at</th>
+					<td *matCellDef="let element" mat-cell>{{element.boughtAt | customDate}}</td>
+				</ng-container>
+			</table>
+		</div>
+		<mat-paginator #matPaginator (page)="onTablePageChange($event)"
+		               [length]="totalItems"
+		               [pageIndex]="queryParams.pageIndex"
+		               [pageSizeOptions]="[10, 15, 25, 100]"
+		               [pageSize]="queryParams.pageSize"
+		               [showFirstLastButtons]=true class="mat-paginator-sticky">
+		</mat-paginator>
+	</div>
+</ion-content>

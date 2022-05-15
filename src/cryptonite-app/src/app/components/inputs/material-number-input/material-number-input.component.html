@@ -1,0 +1,15 @@
+<form [formGroup]="formGroup" novalidate>
+	<mat-form-field appearance="fill">
+		<mat-label>{{label}} {{unit ? '(' + unit + ')' : ''}}</mat-label>
+		<input [formControlName]="controlName" matInput type="number">
+		<mat-error *ngIf="formGroup.controls[controlName].hasError('required')">
+			This field is required
+		</mat-error>
+		<mat-error *ngIf="formGroup.controls[controlName].hasError('min')">
+			This value must be greater than {{min}}
+		</mat-error>
+		<mat-error *ngIf="formGroup.controls[controlName].hasError('max')">
+			This value must be less than {{max}}
+		</mat-error>
+	</mat-form-field>
+</form>

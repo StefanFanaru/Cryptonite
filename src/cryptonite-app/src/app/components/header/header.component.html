@@ -1,0 +1,35 @@
+<div *ngIf="isMobile && headerService.isShown" id="mobile-header">
+	<ion-header #header>
+		<ion-toolbar>
+			<ion-buttons slot="start">
+				<ion-button>
+					<ion-icon name="menu-outline" slot="icon-only"></ion-icon>
+				</ion-button>
+			</ion-buttons>
+			<ion-title>
+				<svg id="no-text-logo" viewBox="39.2 92.8 128.3 66" xmlns="http://www.w3.org/2000/svg">
+					<g transform="matrix(0.1 0 0 -0.1 0 200)">
+						<path d="m628 858.2-234.5-210.7v-117.3l-1-118.3s162.9 141.1 274 240.8l202.4 181.6 1 117.3-1 116.2s-112.1-94.4-240.8-209.6z"
+						      fill="#42b0ff"/>
+						<path d="m1023.7 862.4-234.5-210.7v-117.3l-1-118.3s162.9 141.1 274 240.8l202.4 181.6 1 117.3-1 116.2s-112.1-94.4-240.8-209.6z"
+						      fill="#0090f4"/>
+						<path d="m1434 858-234.5-210.7v-117.3l-1-118.3s162.9 141.1 274 240.8l202.4 181.6 1 117.3-1 116.2s-112.1-94.4-240.8-209.6z"
+						      fill="#0064ab"/>
+					</g>
+				</svg>
+			</ion-title>
+			<ion-buttons slot="end">
+				<ion-button>
+					<ion-icon name="pulse-outline" slot="icon-only"></ion-icon>
+				</ion-button>
+			</ion-buttons>
+		</ion-toolbar>
+	</ion-header>
+</div>
+<div *ngIf="!isMobile  && headerService.isShown" class="header-wrapper">
+	<!--			<button>Header</button>-->
+	<div class="header-container">
+		<app-navbar class="navbar-wrapper background"></app-navbar>
+	</div>
+
+</div>

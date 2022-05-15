@@ -1,0 +1,27 @@
+@import "src/styles/mixins";
+
+#info-box {
+	width: 30vw;
+	padding: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	border-radius: 8px;
+	border: 1px solid var(--color-primary-600);
+
+
+	@include tablet {
+		width: calc(var(--vw, 1vw) * 50);
+	}
+
+	@include phone {
+		width: calc(var(--vw, 1vw) * 80);
+	}
+
+	.info-icon {
+		padding-right: 1.5rem;
+	}
+
+	.info-text {
+		text-align: justify;
+	}
+}

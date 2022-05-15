@@ -1,0 +1,50 @@
+.auth-diagnostics {
+	padding-top: 30px;
+	padding-left: 30px;
+	overflow: auto;
+}
+
+button {
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+table {
+	margin: 10px 0;
+	width: 1000px;
+}
+
+table,
+th,
+td {
+	border: 1px solid lightgrey;
+	border-collapse: collapse;
+}
+
+td,
+th {
+	padding: 10px;
+}
+
+pre {
+	white-space: pre-wrap; /* Since CSS 2.1 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+.fabric-test {
+	display: flex;
+	padding: 50px 0;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+}
+
+.submit-button {
+	margin-left: 20px;
+}
+
+.fabric-name {
+	font-size: 20px;
+}

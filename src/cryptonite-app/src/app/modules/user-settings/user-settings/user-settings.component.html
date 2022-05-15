@@ -1,0 +1,68 @@
+<ion-content>
+	<div class="page-container">
+		<div class="title">Application settings</div>
+		<form [formGroup]="formGroup">
+			<div class="row">
+				<mat-form-field appearance="fill">
+					<mat-label>Preferred currency</mat-label>
+					<input #preferredCurrencyInput
+					       (blur)="onAutocompleteBlur(preferredCurrencyInput)"
+					       [matAutocomplete]="autoPreferredCurrency"
+					       aria-label="Currencies"
+					       data-lpignore="true"
+					       formControlName="preferredCurrency"
+					       matInput
+					       placeholder="Pick one"
+					       type="text">
+					<button (click)="formGroup.controls.preferredCurrency.setValue('')" *ngIf="preferredCurrencyInput.value" aria-label="Clear" mat-icon-button
+					        matSuffix>
+						<mat-icon>close</mat-icon>
+					</button>
+					<mat-autocomplete #autoPreferredCurrency="matAutocomplete" (optionSelected)="preferredCurrencyInput.blur()">
+						<mat-option *ngFor="let option of filteredPreferredCurrencies | async" [value]="option">
+							{{option}}
+						</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+			</div>
+			<div class="row">
+				<mat-form-field appearance="fill">
+					<mat-label>Bank account currency</mat-label>
+					<input #bankAccountCurrencyInput
+					       (blur)="onAutocompleteBlur(bankAccountCurrencyInput)"
+					       [matAutocomplete]="autoBankAccountCurrencies"
+					       aria-label="Currencies"
+					       data-lpignore="true"
+					       formControlName="bankAccountCurrency"
+					       matInput
+					       placeholder="Pick one"
+					       type="text">
+					<button (click)="formGroup.controls.bankAccountCurrency.setValue('')" *ngIf="bankAccountCurrencyInput.value" aria-label="Clear"
+					        mat-icon-button
+					        matSuffix>
+						<mat-icon>close</mat-icon>
+					</button>
+					<mat-autocomplete #autoBankAccountCurrencies="matAutocomplete" (optionSelected)="bankAccountCurrencyInput.blur()">
+						<mat-option *ngFor="let option of filteredBankAccountCurrencies | async" [value]="option">
+							{{option}}
+						</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+			</div>
+			<div class="row">
+				<app-material-number-input [formGroup]="formGroup"
+				                           [max]="100"
+				                           [min]="0"
+				                           controlName="bankConversionMargin"
+				                           label="Bank conversion margin"
+				                           unit="%">
+				</app-material-number-input>
+			</div>
+		</form>
+		<div class="buttons">
+			<button (click)="onSave()" [disabled]="this.formGroup.invalid" color="accent"
+			        mat-raised-button>Save
+			</button>
+		</div>
+	</div>
+</ion-content>

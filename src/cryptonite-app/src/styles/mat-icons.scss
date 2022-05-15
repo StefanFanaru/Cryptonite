@@ -1,0 +1,78 @@
+/* Rules for sizing the icon. */
+.material-icons.md-18 {
+	font-size: 18px;
+}
+
+.material-icons.md-24 {
+	font-size: 24px;
+}
+
+.material-icons.md-36 {
+	font-size: 36px;
+}
+
+.material-icons.md-48 {
+	font-size: 48px;
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+	color: rgba(0, 0, 0, 1);
+}
+
+.material-icons.md-grey {
+	color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-inactive {
+	color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+	color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+	color: rgba(255, 255, 255, 0.3);
+}
+
+.material-icons-outlined,
+.material-icons.material-icons--outlined,
+.material-icons-two-tone,
+.material-icons.material-icons--two-tone,
+.material-icons-round,
+.material-icons.material-icons--round,
+.material-icons-sharp,
+.material-icons.material-icons--sharp {
+	font-weight: normal;
+	font-style: normal;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+}
+
+.material-icons-outlined,
+.material-icons.material-icons--outlined {
+	font-family: 'Material Icons Outlined';
+}
+
+.material-icons-two-tone,
+.material-icons.material-icons--two-tone {
+	font-family: 'Material Icons Two Tone';
+}
+
+.material-icons-round,
+.material-icons.material-icons--round {
+	font-family: 'Material Icons Round';
+}
+
+.material-icons-sharp,
+.material-icons.material-icons--sharp {
+	font-family: 'Material Icons Sharp';
+}

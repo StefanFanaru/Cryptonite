@@ -1,0 +1,53 @@
+@import "src/styles/mixins";
+
+:host-context(.dark-theme) {
+
+}
+
+:host-context(.light-theme) {
+
+}
+
+.header-wrapper {
+	height: 90px;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	width: var(--main-body-width);
+
+	@include phone {
+		width: 100%;
+	}
+}
+
+#no-text-logo {
+	display: block;
+	height: 24px;
+	margin: 0 auto;
+}
+
+
+ion-title {
+	display: flex;
+	justify-content: center;
+
+	ion-icon {
+		margin-left: auto;
+		margin-right: auto;
+		display: flex;
+	}
+
+}
+
+ion-toolbar {
+	--border-style: none;
+}

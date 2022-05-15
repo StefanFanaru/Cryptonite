@@ -1,0 +1,6 @@
+@import "src/styles/mixins";
+
+ion-tabs {
+	margin-top: 56px;
+	max-height: calc(100vh - 56px);
+}

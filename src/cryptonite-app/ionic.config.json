@@ -1,0 +1,7 @@
+{
+  "name": "cryptonite-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

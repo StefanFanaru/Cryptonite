@@ -1,0 +1,33 @@
+.info-container {
+	align-items: center;
+	height: 100%;
+	flex-direction: row;
+	justify-content: center;
+	display: flex;
+	background-color: var(--color-primary-900);
+}
+
+.info-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	//margin-top: 5rem;
+}
+
+.fa-user-lock {
+	font-size: 10vh;
+	padding: 1rem;
+}
+
+.login-button {
+	margin-top: 2rem;
+}
+
+.access-restricted {
+	font-size: 2rem;
+	font-weight: 600;
+}
+
+ion-col {
+	border: 1px solid black;
+}

@@ -1,0 +1,23 @@
+.component-container {
+	width: calc(var(--main-body-width) * 0.35);
+	height: calc(var(--main-body-width) * 0.35);
+	display: flex;
+	position: relative;
+
+	.totalValue {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+
+		app-animated-digit {
+			font-size: 1.8rem;
+		}
+
+		div:last-of-type {
+			font-size: 1.2rem;
+			color: lightgrey;
+		}
+	}
+}

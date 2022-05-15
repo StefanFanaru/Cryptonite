@@ -1,0 +1,11 @@
+<ion-content>
+	<div class="import-wrapper">
+		<div class="title">Import a Binance '{{binanceExportPage}}' export file</div>
+		<span class="material-icons icon">backup</span>
+		<input #fileInput (change)="onFileInputChange($event.target.files)"
+		       [hidden]="true" accept=".xls,.xlsx" class="form-control" type="file">
+		<button (click)="fileInput.click()" [disabled]="isImporting" color="primary" mat-raised-button>Choose file</button>
+		{{fileInput.value}}
+		<div class="file-notes">(.xls or .xlsx)</div>
+	</div>
+</ion-content>

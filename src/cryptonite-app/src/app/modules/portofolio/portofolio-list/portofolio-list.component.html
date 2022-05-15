@@ -1,0 +1,46 @@
+<ion-content>
+	<div class="page-container">
+		<div class="top-wrapper">
+			<div class="top-container">
+				<div class="title mid">{{pageTitle}}</div>
+			</div>
+		</div>
+		<div class="table-wrapper">
+			<table (matSortChange)="sortData($event)" [dataSource]="rows" class="custom-table" mat-table matSort>
+				<tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+				<tr (click)="selectRow(row)"
+				    *matRowDef="let row; columns: displayedColumns;"
+				    [ngClass]="{'selected' : row.selected, 'error': stableCoins.includes(row.symbol)}"
+				    class="table-row"
+				    mat-row></tr>
+				<ng-container matColumnDef="symbol">
+					<th *matHeaderCellDef mat-header-cell mat-sort-header="symbol">Symbol</th>
+					<td *matCellDef="let element" mat-cell>{{element.symbol}}</td>
+				</ng-container>
+				<ng-container matColumnDef="value">
+					<th *matHeaderCellDef mat-header-cell mat-sort-header="value">Value</th>
+					<td *matCellDef="let element" mat-cell>{{element.value | number}} {{ element.valueCurrency}}</td>
+				</ng-container>
+				<ng-container matColumnDef="amount">
+					<th *matHeaderCellDef mat-header-cell mat-sort-header="amount">Amount</th>
+					<td *matCellDef="let element" mat-cell>{{element.amount | number}}</td>
+				</ng-container>
+				<ng-container matColumnDef="insertedAt">
+					<th *matHeaderCellDef mat-header-cell mat-sort-header="insertedAt">Added at</th>
+					<td *matCellDef="let element" mat-cell>{{element.insertedAt | customDate}}</td>
+				</ng-container>
+				<ng-container matColumnDef="updatedAt">
+					<th *matHeaderCellDef mat-header-cell mat-sort-header="updatedAt">Last updated at</th>
+					<td *matCellDef="let element" mat-cell>{{element.updatedAt ? (element.updatedAt | customDate) : ''}}</td>
+				</ng-container>
+			</table>
+		</div>
+		<mat-paginator #matPaginator (page)="onTablePageChange($event)"
+		               [length]="totalItems"
+		               [pageIndex]="queryParams.pageIndex"
+		               [pageSizeOptions]="[10, 15, 25, 100]"
+		               [pageSize]="queryParams.pageSize"
+		               [showFirstLastButtons]=true class="mat-paginator-sticky">
+		</mat-paginator>
+	</div>
+</ion-content>

@@ -1,0 +1,78 @@
+<ion-content>
+	<div class="page-container">
+		<div class="title">New TRADE entry</div>
+		<form [formGroup]="formGroup">
+			<div class="row">
+				<app-material-number-input [formGroup]="formGroup"
+				                           [min]="0"
+				                           [unit]="paidCurrencyInput.value.toUpperCase()"
+				                           controlName="paidAmount"
+				                           label="Paid amount">
+				</app-material-number-input>
+				<mat-form-field appearance="fill">
+					<mat-label>Payment currency</mat-label>
+					<input #paidCurrencyInput
+					       (blur)="onAutocompleteBlur(paidCurrencyInput, cryptoSymbols)"
+					       [matAutocomplete]="autoPaymentCurrencies"
+					       aria-label="Currencies"
+					       data-lpignore="true"
+					       formControlName="paidCryptocurrency"
+					       matInput
+					       placeholder="Pick one"
+					       type="text">
+					<button (click)="formGroup.controls.paidCryptocurrency.setValue('')" *ngIf="paidCurrencyInput.value" aria-label="Clear" mat-icon-button
+					        matSuffix>
+						<mat-icon>close</mat-icon>
+					</button>
+					<mat-autocomplete #autoPaymentCurrencies="matAutocomplete" (optionSelected)="paidCurrencyInput.blur()">
+						<mat-option *ngFor="let option of filteredPaidCryptoSymbols | async" [value]="option">
+							{{option}}
+						</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+			</div>
+			<div class="row">
+				<app-material-number-input [formGroup]="formGroup"
+				                           [min]="0"
+				                           [unit]="gainedCryptocurrencyInput.value.toUpperCase()"
+				                           controlName="gainedAmount"
+				                           label="Gained amount">
+				</app-material-number-input>
+				<mat-form-field appearance="fill">
+					<mat-label>Gained currency</mat-label>
+					<input #gainedCryptocurrencyInput
+					       (blur)="onAutocompleteBlur(gainedCryptocurrencyInput, cryptoSymbols)"
+					       [matAutocomplete]="autoCryptoCurrencies"
+					       aria-label="Currencies"
+					       data-lpignore="true"
+					       formControlName="gainedCryptocurrency"
+					       matInput
+					       placeholder="Pick one"
+					       type="text">
+					<button (click)="formGroup.controls.gainedCryptocurrency.setValue('')" *ngIf="gainedCryptocurrencyInput.value" aria-label="Clear"
+					        mat-icon-button
+					        matSuffix>
+						<mat-icon>close</mat-icon>
+					</button>
+					<mat-autocomplete #autoCryptoCurrencies="matAutocomplete" (optionSelected)="gainedCryptocurrencyInput.blur()">
+						<mat-option *ngFor="let option of filteredGainedCryptoSymbols | async" [value]="option">
+							{{option}}
+						</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+			</div>
+			<div class="row">
+				<mat-form-field appearance="fill">
+					<mat-label>Traded at</mat-label>
+					<input [matDatepicker]="picker" [max]="dateNow" formControlName="tradedAt" matInput>
+					<mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+					<mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+			</div>
+		</form>
+		<div class="buttons">
+			<button (click)="onSubmit()" [disabled]="formGroup.invalid" color="accent" mat-raised-button>Submit</button>
+			<button mat-stroked-button>Cancel</button>
+		</div>
+	</div>
+</ion-content>

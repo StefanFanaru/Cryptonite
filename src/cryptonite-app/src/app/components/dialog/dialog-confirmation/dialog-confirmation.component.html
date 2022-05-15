@@ -1,0 +1,8 @@
+<h1 [ngStyle]="{'color': data.isDanger ? 'var(--accent)' : 'black'}" mat-dialog-title>{{data.title}}</h1>
+<div class="dialog-content" mat-dialog-content>
+	<div>{{data.question}}</div>
+	<div class="buttons">
+		<button (click)="confirm()" class="mr-2" mat-dialog-close mat-stroked-button>Yes</button>
+		<button color="primary" mat-dialog-close mat-flat-button>No</button>
+	</div>
+</div>

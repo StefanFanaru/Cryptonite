@@ -1,0 +1,23 @@
+<ion-app *ngIf="!isFullScreen" id="main">
+	<div class="page-wrapper">
+		<ngx-loading-bar id="loading-bar"></ngx-loading-bar>
+		<app-header *ngIf="isAuthenticated" [isMobile]="isMobile"></app-header>
+		<div *ngIf="!isMobile" [ngStyle]="{
+		     'margin-top' : isAuthenticated ? '0' :'90px',
+		     'height': headerService.isShown ? 'calc(100% - 90px)' : '100%'
+		     }"
+		     class="main-content-wrapper">
+			<ion-router-outlet [ngStyle]="{
+		     'border-top-left-radius': headerService.isShown ? '15px' : '0',
+		     'border-top-right-radius': headerService.isShown ? '15px' : '0'
+		     }"
+			                   class="content-wrapper background"
+			></ion-router-outlet>
+		</div>
+		<app-tabs-menu *ngIf="isMobile"></app-tabs-menu>
+	</div>
+</ion-app>
+
+<ion-app *ngIf="isFullScreen">
+	<ion-router-outlet></ion-router-outlet>
+</ion-app>

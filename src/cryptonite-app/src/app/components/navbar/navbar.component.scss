@@ -1,0 +1,92 @@
+@import 'src/styles/mixins';
+
+.navbar-wrapper {
+	border-radius: 15px;
+	height: 65px;
+	margin-right: 5%;
+	min-width: 55px;
+	display: flex;
+	align-items: center;
+	width: 21rem;
+	justify-content: space-evenly;
+
+	@include desktop {
+		//margin-left: 10%;
+	}
+
+	@include laptop {
+		margin-right: 2%;
+	}
+
+	@include tablet {
+		//width: 6%;
+	}
+
+	@include phone {
+		display: none;
+	}
+}
+
+#suitcase {
+	.a {
+		fill: #383838;
+	}
+
+	.b {
+		fill: #7c8388;
+	}
+
+	.c {
+		fill: #575f64;
+	}
+}
+
+.element {
+	svg {
+		height: 40px;
+		box-sizing: border-box;
+		transition: filter 0.2s ease-in;
+	}
+}
+
+.hover-bright1:hover {
+	filter: brightness(1.05);
+}
+
+.hover-bright2:hover {
+	filter: brightness(1.15);
+}
+
+.hover-bright6:hover {
+	filter: brightness(1.5);
+}
+
+:host-context(.dark-theme) {
+	.navbar-wrapper {
+		background-color: var(--color-primary-800);
+	}
+
+	#settings {
+		filter: unset;
+	}
+
+	.element > svg:hover {
+		filter: drop-shadow(3px 6px 2px rgba(0, 0, 0, 0.5));
+		cursor: pointer;
+	}
+}
+
+:host-context(.light-theme) {
+	.navbar-wrapper {
+		background-color: #f3f3f3;
+	}
+
+	#settings {
+		filter: brightness(0.75);
+	}
+
+	.element > svg:hover {
+		filter: drop-shadow(3px 4px 2px rgba(0, 0, 0, 0.3));
+		cursor: pointer;
+	}
+}

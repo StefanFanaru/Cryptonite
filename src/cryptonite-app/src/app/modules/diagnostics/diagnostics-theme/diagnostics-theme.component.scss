@@ -1,0 +1,68 @@
+.theme-page {
+	padding-left: 50px;
+}
+
+section {
+	display: table;
+}
+
+mat-divider {
+	width: 50%;
+}
+
+.example-label {
+	display: table-cell;
+	font-size: 14px;
+	margin-left: 8px;
+	min-width: 120px;
+}
+
+.example-button-row {
+	display: table-cell;
+	width: 490px;
+}
+
+.example-button-row .mat-button-base {
+	margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.example-button-container {
+	display: flex;
+	justify-content: center;
+	width: 120px;
+}
+
+h2 {
+	margin-top: 50px;
+}
+
+.example-section {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	height: 60px;
+}
+
+.example-margin {
+	margin: 0 10px;
+}
+
+mat-form-field {
+	width: 200px;
+	margin: 0 20px;
+}
+
+mat-slider {
+	width: 300px;
+}
+
+//mat-progress-bar {
+//    margin: 20px 0;
+//    width: 300px;
+//}

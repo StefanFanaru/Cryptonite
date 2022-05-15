@@ -1,0 +1,32 @@
+{
+  "trailingComma": "none",
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "bracketSpacing": false,
+  "arrowParens": "avoid",
+  "printWidth": 130,
+  "overrides": [
+    {
+      "files": "*.scss",
+      "options": {
+        "tabWidth": 4,
+        "block-closing-brace-newline-after": "always-multi-line",
+        "block-closing-brace-empty-line-before": "never",
+        "block-closing-brace-space-before": "always",
+        "block-opening-brace-space-after": "always",
+        "block-opening-brace-space-before": "always",
+        "block-closing-brace-newline-before": "always-multi-line",
+        "block-opening-brace-newline-after": "always-multi-line"
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "options": {
+        "tabWidth": 4
+      }
+    }
+  ]
+}
