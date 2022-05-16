@@ -1,0 +1,76 @@
+pool:
+  vmImage: "ubuntu-latest"
+
+trigger:
+  - main
+
+variables:
+  buildConfiguration: "Debug"
+
+stages:
+  - stage: Build
+    displayName: "Build and test"
+    jobs:
+      - job: Build
+        displayName: "Build and test"
+        steps:
+          - task: NodeTool@0
+            displayName: "Install Node.js"
+            inputs:
+              versionSpec: "12.x"
+
+          - script: npm install -g @angular/cli
+            displayName: "Install Angular CLI"
+
+          - task: Npm@1
+            displayName: "npm install"
+            inputs:
+              workingDir: 'cryptonite-app'
+              command: "install"
+              verbose: true
+
+          - task: Npm@1
+            displayName: "npm build"
+            inputs:
+              workingDir: 'cryptonite-app'
+              command: "custom"
+              customCommand: "run production-build"
+              verbose: true
+
+          - task: CmdLine@2
+            inputs:
+              script: 'rm -rf $(System.DefaultWorkingDirectory)/cryptonite-app/www/svg'
+          - task: PublishPipelineArtifact@1
+            displayName: "Publish Artifacts"
+            inputs:
+              targetPath: $(System.DefaultWorkingDirectory)/cryptonite-app/www
+              artifactName: drop
+
+  - stage: Deploy
+    displayName: "Deploy to Linux VM"
+    jobs:
+      - job: Prepare
+        displayName: "Prepare VM for deployment"
+        steps:
+          - task: InstallSSHKey@0
+            displayName: 'Install an SSH key'
+            inputs:
+              sshKeySecureFile: 'general-vm-ssh.pem'
+              addEntryToConfig: true
+              configHostAlias: 'GeneralVM'
+              configHostname: 'general-vm-stefanaru.westeurope.cloudapp.azure.com'
+              configUser: azure
+              configPort: 22
+              knownHostsEntry: CJ0F3jPeePYY4CyZwxm/56f1FKU=|jbIjai+FN/T4s04DEdas8a8snNk= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBADWXVgaYPbftNBr/s0gr6+kz9jFFL91bb35JEsocu5JDeGr1qacoTb7fl8Pue4YJkrxVzkLD9YKFHJri7kQWgM=
+          - task: DownloadPipelineArtifact@2
+            displayName: "Download artifacts"
+            inputs:
+              artifactName: drop
+              path: "$(Build.ArtifactStagingDirectory)"
+          - task: CopyFilesOverSSH@0
+            displayName: 'Securely copy artifacts'
+            inputs:
+              sshEndpoint: 'GeneralVM'
+              sourceFolder: '$(Build.ArtifactStagingDirectory)'
+              targetFolder: /var/www/cryptonite-app
+

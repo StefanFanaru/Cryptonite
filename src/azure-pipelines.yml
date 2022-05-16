@@ -11,8 +11,6 @@ stages:
       - job: Build
         displayName: "Build and test"
         steps:
-          - checkout: self
-            displayName: "Checkout Cryptonite/master"
           - script: dir $(Build.SourcesDirectory)
           - task: DotNetCoreCLI@2
             displayName: "Restore"
