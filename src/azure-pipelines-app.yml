@@ -25,25 +25,25 @@ stages:
           - task: Npm@1
             displayName: "npm install"
             inputs:
-              workingDir: 'cryptonite-app'
+              workingDir: 'src/cryptonite-app'
               command: "install"
               verbose: true
 
           - task: Npm@1
             displayName: "npm build"
             inputs:
-              workingDir: 'cryptonite-app'
+              workingDir: 'src/cryptonite-app'
               command: "custom"
               customCommand: "run production-build"
               verbose: true
 
           - task: CmdLine@2
             inputs:
-              script: 'rm -rf $(System.DefaultWorkingDirectory)/cryptonite-app/www/svg'
+              script: 'rm -rf $(System.DefaultWorkingDirectory)/src/cryptonite-app/www/svg'
           - task: PublishPipelineArtifact@1
             displayName: "Publish Artifacts"
             inputs:
-              targetPath: $(System.DefaultWorkingDirectory)/cryptonite-app/www
+              targetPath: $(System.DefaultWorkingDirectory)/src/cryptonite-app/www
               artifactName: drop
 
   - stage: Deploy
