@@ -35,12 +35,13 @@ export class ImportEntriesComponent implements OnInit {
     });
   }
 
-  onFileInputChange(files: FileList) {
-    if (!files?.length) {
+  onFileInputChange(event: Event) {
+    const element = event.currentTarget as HTMLInputElement;
+    if (!element.files?.length) {
       return;
     }
     this.isImporting = true;
-    this.entriesService.import(files.item(0), this.importType).subscribe(x => {
+    this.entriesService.import(element.files.item(0), this.importType).subscribe(x => {
       this.isImporting = false;
       this.fileInput.nativeElement.value = '';
       this.router.navigate([`/lists/${ImportType[this.importType].toLowerCase()}`]);
@@ -48,6 +49,5 @@ export class ImportEntriesComponent implements OnInit {
       this.isImporting = false;
       this.fileInput.nativeElement.value = '';
     });
-    console.log(files.item(0));
   }
 }

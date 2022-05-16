@@ -8,5 +8,6 @@ export const environment = {
   cryptoniteApi: 'https://api.cryptonite.stefanaru.com',
   automatorApi: 'https://automator.brevien.com',
   cryptoniteApiVersion: '1.0',
-  automatorApiVersion: '1.0'
+  automatorApiVersion: '1.0',
+  disableAuth: false
 };
