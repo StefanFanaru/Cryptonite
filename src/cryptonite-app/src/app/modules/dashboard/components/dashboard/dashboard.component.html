@@ -14,16 +14,18 @@
 				<i class="fas fa-expand"></i>
 			</button>
 		</div>
-		<div *ngIf="allTimeResult && distribution?.totalValue > 0" class="all-time">
-			<div [ngStyle]="{'color': allTimeResult.result >= 0 ?'lawngreen' : 'var(--color-accent)'}" class="profit-value">
-				<app-animated-digit [duration]="1000" [endValue]="allTimeResult.result" [positiveOnly]="true"
-				                    [suffix]="allTimeResult.currency"></app-animated-digit>
+		<div #dashboardContent class="dashboard-content">
+			<div *ngIf="allTimeResult && distribution?.totalValue > 0" class="all-time">
+				<div [ngStyle]="{'color': allTimeResult.result >= 0 ?'lawngreen' : 'var(--color-accent)'}" class="profit-value">
+					<app-animated-digit [duration]="1000" [endValue]="allTimeResult.result" [positiveOnly]="true"
+					                    [suffix]="allTimeResult.currency"></app-animated-digit>
+				</div>
+				<span class="text">All time</span>
 			</div>
-			<span class="text">All time</span>
-		</div>
-		<div *ngIf="distribution?.totalValue > 0" class="details">
-			<app-result-resume *ngIf="todayResult" [data]="todayResult"></app-result-resume>
-			<app-distribution-chart *ngIf="distribution" [distribution]="distribution"></app-distribution-chart>
+			<div *ngIf="distribution?.totalValue > 0" class="details">
+				<app-result-resume *ngIf="todayResult" [data]="todayResult"></app-result-resume>
+				<app-distribution-chart *ngIf="distribution" [distribution]="distribution"></app-distribution-chart>
+			</div>
 		</div>
 		<app-no-items *ngIf="distribution?.totalValue == 0" items="transactions"></app-no-items>
 	</div>

@@ -37,9 +37,8 @@
 	.details {
 		display: flex;
 		width: 100%;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
-		gap: 9rem;
 
 		app-result-resume {
 			width: 37%;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PortofolioService } from '../../../../services/portofolio.service';
 import { Distribution } from '../../../../models/portofolio/distribution';
 import { ResultData } from '../../../../models/portofolio/result-data';
@@ -15,6 +15,7 @@ import { HeaderService } from '../../../../services/header.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild('dashboardContent') dashboardContent: ElementRef<HTMLDivElement>;
   distribution: Distribution;
   todayResult: ResultData;
   allTimeResult: AllTimeResult;
@@ -47,6 +48,8 @@ export class DashboardComponent implements OnInit {
   }
 
   onMiniClick(): void {
+    const element = this.dashboardContent.nativeElement;
+    const rect = element.getBoundingClientRect();
     this.isCompressed = !this.isCompressed;
     if (!this.isCompressed) {
       this.oldWindowSize ??= { width: window.screen.width, height: window.screen.height };
@@ -55,7 +58,7 @@ export class DashboardComponent implements OnInit {
     }
     this.headerService.isShown = false;
     this.oldWindowSize = { width: window.outerWidth, height: window.outerHeight };
-    window.resizeTo(974, 547);
+    window.resizeTo(rect.width, rect.height + 60);
   }
 
   private handleDashboardUpdate(clientEvent: ClientEvent): void {
