@@ -1,4 +1,5 @@
-﻿using Cryptonite.Core.Constants;
+﻿using System.Security.Authentication;
+using Cryptonite.Core.Constants;
 using Cryptonite.Infrastructure.Abstractions.Binance;
 using Cryptonite.Infrastructure.Services.Binance.Sockets.Dtos;
 using Newtonsoft.Json.Linq;
@@ -19,7 +20,7 @@ namespace Cryptonite.Infrastructure.Services.Binance.Sockets
         public void StartMiniTickerConnection()
         {
             _webSocket = new WebSocket("wss://stream.binance.com:9443/ws/!ticker@arr");
-
+            _webSocket.SslConfiguration.EnabledSslProtocols = SslProtocols.Tls12;
             _webSocket.OnMessage += (_, args) =>
             {
                 if (string.IsNullOrWhiteSpace(args.Data))
